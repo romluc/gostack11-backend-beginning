@@ -14,8 +14,8 @@ appointmentsRouter.post('/', async (request, response) => {
       email,
       password,
     });
-    // email nao pode ser duplicado
-    // regras -> Password crypto
+
+    delete user.password;
 
     return response.json(user);
   } catch (err) {
