@@ -1,6 +1,8 @@
 import { startOfHour } from 'date-fns';
 import { getCustomRepository } from 'typeorm';
 
+import AppError from '../errors/AppError';
+
 import Appointment from '../models/Appointment';
 import AppointmentsRepository from '../repositories/AppointmentsRepository';
 
@@ -20,7 +22,7 @@ class CreateAppointmentService {
     );
 
     if (findAppointmentInSameDate) {
-      throw Error('Appointment already taken! Please choose another! ');
+      throw new AppError('Appointment already taken! Please choose another! ');
     }
 
     // Using destructed object (DTO) instead of single parameters
